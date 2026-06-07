@@ -419,6 +419,30 @@ Gemma 4 31B:
     url: https://huggingface.co/google/gemma-4-31B-it/blob/main/config.json
   tech_report:
     url: https://ai.google.dev/gemma/docs/core/model_card_4
+Gemma 4 12B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gemma-4-12b.webp"
+  date: '2026-06-03'
+  summary: Dense Gemma 4 12B Unified uses an encoder-free multimodal input path, while its text decoder keeps the 31B-style local-global attention recipe.
+  scale: 12B parameters
+  context_tokens: '128,000'
+  vocab_size: '262,144 (~262k)'
+  license_name: Apache License 2.0
+  license_url: https://ai.google.dev/gemma/docs/core/model_card_4
+  decoder_type: Dense
+  attention: GQA with QK-Norm, unified K/V on global layers, p-RoPE on global layers, and 5:1 sliding-window/global attention
+  layer_mix: '40 sliding-window + 8 global'
+  kv_cache_per_token_bf16: '328 KiB'
+  highlight: Figure shows the 48-layer text decoder; the full 12B Unified model also projects audio, image, and video inputs directly into the decoder input stream.
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: google/gemma-4-12B-it
+    label: config.json
+    url: https://huggingface.co/google/gemma-4-12B-it/blob/main/config.json
+  tech_report:
+    url: https://developers.googleblog.com/gemma-4-12b-the-developer-guide/
+  hide_article_link: true
 Gemma 4 E2B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gemma-4-e2b.webp"
   date: '2026-04-02'
@@ -687,6 +711,91 @@ Laguna XS.2:
     url: https://huggingface.co/poolside/Laguna-XS.2/blob/main/config.json
   tech_report:
     url: https://poolside.ai/assets/laguna/laguna-m1-xs2-technical-report.pdf
+LFM2.5 350M:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/lfm2-5-350m.webp"
+  date: '2026-05-28'
+  summary: Liquid AI's compact LFM2.5 model combines double-gated LIV convolution blocks with periodic GQA layers.
+  scale: 350M parameters
+  context_tokens: '128,000'
+  vocab_size: '65,536 (~65k)'
+  license_name: LFM Open License v1.0
+  license_url: https://huggingface.co/LiquidAI/LFM2.5-350M/blob/main/LICENSE
+  decoder_type: Dense hybrid
+  attention: LIV convolution blocks plus GQA
+  layer_mix: '10 LIV conv + 6 GQA'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Uses a 16-layer hybrid stack with 10 LIV convolution layers and 6 GQA layers.
+  related_concepts:
+    - gqa
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: LiquidAI/LFM2.5-350M
+    label: config.json
+    url: https://huggingface.co/LiquidAI/LFM2.5-350M/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://www.liquid.ai/blog/lfm2-5-350m-no-size-left-behind
+LFM2.5 1.2B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/lfm2-5-1-2b.webp"
+  date: '2026-05-28'
+  summary: Liquid AI's 1.2B LFM2.5 model keeps the 16-layer hybrid LIV convolution and GQA stack at a wider hidden size.
+  scale: 1.2B parameters
+  context_tokens: '128,000'
+  vocab_size: '65,536 (~65k)'
+  license_name: LFM Open License v1.0
+  license_url: https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking/blob/main/LICENSE
+  decoder_type: Dense hybrid
+  attention: LIV convolution blocks plus GQA
+  layer_mix: '10 LIV conv + 6 GQA'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Keeps the 16-layer LFM2.5 hybrid stack but doubles the hidden size to 2048 and uses 32 query heads.
+  related_concepts:
+    - gqa
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: LiquidAI/LFM2.5-1.2B-Thinking
+    label: config.json
+    url: https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://www.liquid.ai/blog/lfm2-5-1-2b-thinking-on-device-reasoning-under-1gb
+LFM2.5 8B-A1B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/lfm2-5-8b-a1b.webp"
+  date: '2026-05-28'
+  summary: Liquid AI's sparse LFM2.5 model combines LIV convolution, GQA, and MoE routing with 4 of 32 experts active per token.
+  scale: 8.3B total, 1.5B active (18.1% active)
+  context_tokens: '128,000'
+  vocab_size: '128,000'
+  license_name: LFM Open License v1.0
+  license_url: https://huggingface.co/LiquidAI/LFM2.5-8B-A1B/blob/main/LICENSE
+  decoder_type: Sparse hybrid
+  attention: LIV convolution blocks plus GQA and MoE
+  layer_mix: '18 LIV conv + 6 GQA + MoE FFNs'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Uses 24 layers, 32 MoE experts with 4 active per token, and leaves the first two layers dense before sparse routing begins.
+  related_concepts:
+    - gqa
+    - moe
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: LiquidAI/LFM2.5-8B-A1B
+    label: config.json
+    url: https://huggingface.co/LiquidAI/LFM2.5-8B-A1B/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://www.liquid.ai/blog/lfm2-5-8b-a1b
 Ling 2.5 1T:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/ling-2-5-1t.webp"
   date: '2026-02-15'
@@ -840,6 +949,35 @@ Llama 4 Maverick:
     url: https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/blob/main/config.json
   tech_report:
     url: https://ai.meta.com/blog/llama-4-multimodal-intelligence/
+JetBrains Mellum2 Thinking 12B-A2.5B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/mellum2.webp"
+  date: '2026-06-01'
+  summary: JetBrains' Mellum2 Thinking is a compact reasoning-tuned sparse MoE for code and agentic workflows.
+  scale: 12B total, 2.5B active (20.8% active)
+  context_tokens: '131,072'
+  vocab_size: '98,304 (~98k)'
+  license_name: Apache License 2.0
+  license_url: https://huggingface.co/JetBrains/Mellum2-12B-A2.5B-Thinking/blob/main/README.md
+  decoder_type: Sparse MoE
+  attention: GQA with 3:1 sliding-window/full attention
+  layer_mix: '21 sliding-window + 7 full GQA'
+  kv_cache_per_token_bf16: '56 KiB'
+  highlight: Uses 64 experts with 8 active per token, a 1024-token sliding window, and YaRN scaling on full-attention layers.
+  related_concepts:
+    - gqa
+    - swa
+    - moe
+    - rope
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: JetBrains/Mellum2-12B-A2.5B-Thinking
+    label: config.json
+    url: https://huggingface.co/JetBrains/Mellum2-12B-A2.5B-Thinking/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://arxiv.org/abs/2605.31268
 MiniMax M2 230B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/minimax-m2-230b.webp"
   date: '2025-10-23'
@@ -1061,6 +1199,29 @@ Nemotron 3 Super 120B-A12B:
     url: https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/blob/main/config.json
   tech_report:
     url: https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Super-Technical-Report.pdf
+Nemotron 3 Ultra 550B-A55B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/nemotron-3-ultra-550b-a55b.webp"
+  date: '2026-06-04'
+  summary: NVIDIA's Ultra model scales the Nemotron 3 hybrid stack to 550B total parameters while keeping 55B active per token.
+  scale: 550B total, 55B active (10% active)
+  context_tokens: '1,000,000'
+  license_name: NVIDIA Nemotron Open Model License
+  license_url: https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-nemotron-open-model-license/
+  decoder_type: Hybrid MoE
+  attention: Mostly Mamba-2 with a few GQA layers
+  layer_mix: '12 GQA + 48 Mamba-2 + 48 MoE'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Scales the latent-MoE hybrid to 108 layers with 48 Mamba-2, 48 latent MoE, and 12 GQA layers.
+  aa_intelligence_index: '47.7'
+  aai_profile: 'General 60.3 · Scientific 35.7 · Coding 37.6 · Agents 57.1'
+  aa_url: https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b
+  config:
+    repo: nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4
+    label: config.json
+    url: https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4/blob/main/config.json
+  tech_report:
+    url: https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf
+  hide_article_link: true
 OLMo 2 7B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/olmo-2-7b.webp"
   date: '2024-11-25'
