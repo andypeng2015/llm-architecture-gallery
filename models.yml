@@ -2,7 +2,7 @@
 Arcee AI Trinity Large 400B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/arcee-ai-trinity-large-400b.webp"
   date: '2026-01-27'
-  summary: Arcee's flagship blends several efficiency tricks into a DeepSeek-like coarse MoE design.
+  summary: Arcee's flagship blends several efficiency tricks into a DeepSeek-like coarse MoE design; the AA score shown here refers to the Trinity Large Thinking checkpoint.
   scale: 400B total, 13B active (3.3% active)
   context_tokens: '512,000'
   license_name: Apache License 2.0
@@ -12,9 +12,9 @@ Arcee AI Trinity Large 400B:
   layer_mix: '45 sliding-window + 15 global'
   kv_cache_per_token_bf16: '240 KiB'
   highlight: Combines QK-Norm, RoPE+NoPE, sandwich norm, and a coarse-grained MoE.
-  aa_intelligence_index: '15.0'
-  aai_profile: 'N/A'
-  aa_url:
+  aa_intelligence_index: '31.9'
+  aai_profile: 'General 31.4 · Scientific 26.4 · Coding 27.2 · Agents 42.6'
+  aa_url: https://artificialanalysis.ai/models/trinity-large-thinking
   config:
     repo: arcee-ai/Trinity-Large-Base
     label: config.json
@@ -100,6 +100,13 @@ DeepSeek V4-Pro:
   layer_mix: '61 CSA/HCA'
   kv_cache_per_token_bf16: '7.7 KiB'
   highlight: Uses 384 experts, 6 routed plus 1 shared expert per token, hash-based routing, compressed attention caches, and the V4 MTP path.
+  related_concepts:
+    - csa_hca
+    - mhc
+    - mla
+    - deepseek_sparse_attention
+    - moe
+    - mtp
   aa_intelligence_index: '51.5'
   aai_profile: 'General 48.0 · Scientific 43.4 · Coding 47.5 · Agents 67.2'
   aa_url: https://artificialanalysis.ai/models/deepseek-v4-pro
@@ -107,7 +114,6 @@ DeepSeek V4-Pro:
     repo: deepseek-ai/DeepSeek-V4-Pro
     label: config.json
     url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/config.json
-  hide_article_link: true
   tech_report:
     url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf
 DeepSeek V4-Flash:
@@ -123,6 +129,13 @@ DeepSeek V4-Flash:
   layer_mix: '43 CSA/HCA'
   kv_cache_per_token_bf16: '5.4 KiB'
   highlight: Uses 256 experts, 6 routed plus 1 shared expert per token, hash-based routing, compressed attention, and the V4 MTP path.
+  related_concepts:
+    - csa_hca
+    - mhc
+    - mla
+    - deepseek_sparse_attention
+    - moe
+    - mtp
   aa_intelligence_index: '46.5'
   aai_profile: 'General 45.9 · Scientific 40.2 · Coding 38.7 · Agents 61.3'
   aa_url: https://artificialanalysis.ai/models/deepseek-v4-flash
@@ -130,7 +143,6 @@ DeepSeek V4-Flash:
     repo: deepseek-ai/DeepSeek-V4-Flash
     label: config.json
     url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/config.json
-  hide_article_link: true
   tech_report:
     url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/DeepSeek_V4.pdf
 GLM-4.5 355B:
@@ -258,9 +270,9 @@ GPT-2 XL 1.5B:
   layer_mix: '48 MHA'
   kv_cache_per_token_bf16: '300 KiB'
   highlight: Classic GPT-2 recipe with dropout, GELU, LayerNorm, and full multi-head attention.
-  aa_intelligence_index: '32.3'
-  aai_profile: 'General 31.1 · Scientific 24.8 · Coding 33.9 · Agents 39.4'
-  aa_url: https://artificialanalysis.ai/models/gemma-4-31b-non-reasoning
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
   config:
     repo: openai-community/gpt2-xl
     label: config.json
@@ -407,6 +419,30 @@ Gemma 4 31B:
     url: https://huggingface.co/google/gemma-4-31B-it/blob/main/config.json
   tech_report:
     url: https://ai.google.dev/gemma/docs/core/model_card_4
+Gemma 4 12B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gemma-4-12b.webp"
+  date: '2026-06-03'
+  summary: Dense Gemma 4 12B Unified uses an encoder-free multimodal input path, while its text decoder keeps the 31B-style local-global attention recipe.
+  scale: 12B parameters
+  context_tokens: '128,000'
+  vocab_size: '262,144 (~262k)'
+  license_name: Apache License 2.0
+  license_url: https://ai.google.dev/gemma/docs/core/model_card_4
+  decoder_type: Dense
+  attention: GQA with QK-Norm, unified K/V on global layers, p-RoPE on global layers, and 5:1 sliding-window/global attention
+  layer_mix: '40 sliding-window + 8 global'
+  kv_cache_per_token_bf16: '328 KiB'
+  highlight: Figure shows the 48-layer text decoder; the full 12B Unified model also projects audio, image, and video inputs directly into the decoder input stream.
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: google/gemma-4-12B-it
+    label: config.json
+    url: https://huggingface.co/google/gemma-4-12B-it/blob/main/config.json
+  tech_report:
+    url: https://developers.googleblog.com/gemma-4-12b-the-developer-guide/
+  hide_article_link: true
 Gemma 4 E2B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gemma-4-e2b.webp"
   date: '2026-04-02'
@@ -421,6 +457,11 @@ Gemma 4 E2B:
   layer_mix: '28 sliding-window + 7 global'
   kv_cache_per_token_bf16: '35 KiB'
   highlight: Uses a double-wide GELU MLP plus a single KV head to stay light enough for offline edge deployments.
+  related_concepts:
+    - qk_norm
+    - swa
+    - kv_sharing
+    - per_layer_embeddings
   aa_intelligence_index: '12.1'
   aai_profile: 'General 20.3 · Scientific 12.4 · Coding 8.3 · Agents 7.4'
   aa_url: https://artificialanalysis.ai/models/gemma-4-e2b-non-reasoning
@@ -428,7 +469,6 @@ Gemma 4 E2B:
     repo: google/gemma-4-E2B-it
     label: config.json
     url: https://huggingface.co/google/gemma-4-E2B-it/blob/main/config.json
-  hide_article_link: true
   tech_report:
     url: https://ai.google.dev/gemma/docs/core/model_card_4
   from_scratch:
@@ -447,6 +487,12 @@ Gemma 4 E4B:
   layer_mix: '35 sliding-window + 7 global'
   kv_cache_per_token_bf16: '84 KiB'
   highlight: Steps up to a 42-layer stack with 2 KV heads while keeping the same edge-oriented local/global template.
+  related_concepts:
+    - gqa
+    - qk_norm
+    - swa
+    - kv_sharing
+    - per_layer_embeddings
   aa_intelligence_index: '14.8'
   aai_profile: 'General 28.1 · Scientific 16.2 · Coding 6.4 · Agents 8.7'
   aa_url: https://artificialanalysis.ai/models/gemma-4-e4b-non-reasoning
@@ -454,7 +500,6 @@ Gemma 4 E4B:
     repo: google/gemma-4-E4B-it
     label: config.json
     url: https://huggingface.co/google/gemma-4-E4B-it/blob/main/config.json
-  hide_article_link: true
   tech_report:
     url: https://ai.google.dev/gemma/docs/core/model_card_4
   from_scratch:
@@ -651,6 +696,12 @@ Laguna XS.2:
   layer_mix: '30 sliding-window + 10 global'
   kv_cache_per_token_bf16: '160 KiB'
   highlight: Uses per-layer query-head counts, a 512-token SWA window, sigmoid MoE routing, and one shared expert alongside the top-8 routed experts.
+  related_concepts:
+    - gqa
+    - qk_norm
+    - swa
+    - moe
+    - attention_budgeting
   aa_intelligence_index: 'N/A'
   aai_profile: 'N/A'
   aa_url:
@@ -658,9 +709,93 @@ Laguna XS.2:
     repo: poolside/Laguna-XS.2
     label: config.json
     url: https://huggingface.co/poolside/Laguna-XS.2/blob/main/config.json
+  tech_report:
+    url: https://poolside.ai/assets/laguna/laguna-m1-xs2-technical-report.pdf
+LFM2.5 350M:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/lfm2-5-350m.webp"
+  date: '2026-05-28'
+  summary: Liquid AI's compact LFM2.5 model combines double-gated LIV convolution blocks with periodic GQA layers.
+  scale: 350M parameters
+  context_tokens: '128,000'
+  vocab_size: '65,536 (~65k)'
+  license_name: LFM Open License v1.0
+  license_url: https://huggingface.co/LiquidAI/LFM2.5-350M/blob/main/LICENSE
+  decoder_type: Dense hybrid
+  attention: LIV convolution blocks plus GQA
+  layer_mix: '10 LIV conv + 6 GQA'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Uses a 16-layer hybrid stack with 10 LIV convolution layers and 6 GQA layers.
+  related_concepts:
+    - gqa
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: LiquidAI/LFM2.5-350M
+    label: config.json
+    url: https://huggingface.co/LiquidAI/LFM2.5-350M/blob/main/config.json
   hide_article_link: true
   tech_report:
-    url: https://poolside.ai/blog/laguna-a-deeper-dive
+    url: https://www.liquid.ai/blog/lfm2-5-350m-no-size-left-behind
+LFM2.5 1.2B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/lfm2-5-1-2b.webp"
+  date: '2026-05-28'
+  summary: Liquid AI's 1.2B LFM2.5 model keeps the 16-layer hybrid LIV convolution and GQA stack at a wider hidden size.
+  scale: 1.2B parameters
+  context_tokens: '128,000'
+  vocab_size: '65,536 (~65k)'
+  license_name: LFM Open License v1.0
+  license_url: https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking/blob/main/LICENSE
+  decoder_type: Dense hybrid
+  attention: LIV convolution blocks plus GQA
+  layer_mix: '10 LIV conv + 6 GQA'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Keeps the 16-layer LFM2.5 hybrid stack but doubles the hidden size to 2048 and uses 32 query heads.
+  related_concepts:
+    - gqa
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: LiquidAI/LFM2.5-1.2B-Thinking
+    label: config.json
+    url: https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://www.liquid.ai/blog/lfm2-5-1-2b-thinking-on-device-reasoning-under-1gb
+LFM2.5 8B-A1B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/lfm2-5-8b-a1b.webp"
+  date: '2026-05-28'
+  summary: Liquid AI's sparse LFM2.5 model combines LIV convolution, GQA, and MoE routing with 4 of 32 experts active per token.
+  scale: 8.3B total, 1.5B active (18.1% active)
+  context_tokens: '128,000'
+  vocab_size: '128,000'
+  license_name: LFM Open License v1.0
+  license_url: https://huggingface.co/LiquidAI/LFM2.5-8B-A1B/blob/main/LICENSE
+  decoder_type: Sparse hybrid
+  attention: LIV convolution blocks plus GQA and MoE
+  layer_mix: '18 LIV conv + 6 GQA + MoE FFNs'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Uses 24 layers, 32 MoE experts with 4 active per token, and leaves the first two layers dense before sparse routing begins.
+  related_concepts:
+    - gqa
+    - moe
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: LiquidAI/LFM2.5-8B-A1B
+    label: config.json
+    url: https://huggingface.co/LiquidAI/LFM2.5-8B-A1B/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://www.liquid.ai/blog/lfm2-5-8b-a1b
 Ling 2.5 1T:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/ling-2-5-1t.webp"
   date: '2026-02-15'
@@ -765,9 +900,9 @@ Llama 3 8B:
   layer_mix: '32 GQA'
   kv_cache_per_token_bf16: '128 KiB'
   highlight: Pre-norm baseline; wider than OLMo 2 at a similar scale.
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '6.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/llama-3-instruct-8b
   config:
     repo: meta-llama/Meta-Llama-3-8B
     label: config.json
@@ -777,6 +912,8 @@ Llama 3 8B:
   from_scratch:
     url: https://github.com/rasbt/LLMs-from-scratch/tree/main/ch05/07_gpt_to_llama
 Llama 3.2 3B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-3-2-3b.webp"
+  date: '2024-09-25'
   summary: Small Llama baseline used to show how closely Nanbeige follows the mainstream compact decoder recipe.
   scale: 3B parameters
   context_tokens: '128,000'
@@ -803,15 +940,44 @@ Llama 4 Maverick:
   layer_mix: '36 chunked + 12 full GQA'
   kv_cache_per_token_bf16: '192 KiB'
   highlight: Alternates dense and MoE blocks and uses fewer, larger experts than DeepSeek V3.
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '18.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/llama-4-maverick
   config:
     repo: meta-llama/Llama-4-Maverick-17B-128E-Instruct
     label: config.json
     url: https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/blob/main/config.json
   tech_report:
     url: https://ai.meta.com/blog/llama-4-multimodal-intelligence/
+JetBrains Mellum2 Thinking 12B-A2.5B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/mellum2.webp"
+  date: '2026-06-01'
+  summary: JetBrains' Mellum2 Thinking is a compact reasoning-tuned sparse MoE for code and agentic workflows.
+  scale: 12B total, 2.5B active (20.8% active)
+  context_tokens: '131,072'
+  vocab_size: '98,304 (~98k)'
+  license_name: Apache License 2.0
+  license_url: https://huggingface.co/JetBrains/Mellum2-12B-A2.5B-Thinking/blob/main/README.md
+  decoder_type: Sparse MoE
+  attention: GQA with 3:1 sliding-window/full attention
+  layer_mix: '21 sliding-window + 7 full GQA'
+  kv_cache_per_token_bf16: '56 KiB'
+  highlight: Uses 64 experts with 8 active per token, a 1024-token sliding window, and YaRN scaling on full-attention layers.
+  related_concepts:
+    - gqa
+    - swa
+    - moe
+    - rope
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: JetBrains/Mellum2-12B-A2.5B-Thinking
+    label: config.json
+    url: https://huggingface.co/JetBrains/Mellum2-12B-A2.5B-Thinking/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://arxiv.org/abs/2605.31268
 MiniMax M2 230B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/minimax-m2-230b.webp"
   date: '2025-10-23'
@@ -825,13 +991,15 @@ MiniMax M2 230B:
   layer_mix: '62 GQA'
   kv_cache_per_token_bf16: '248 KiB'
   highlight: Uses per-layer QK-Norm, much sparser MoE routing than Qwen3, and MTP during training.
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '36.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/minimax-m2
   config:
     repo: MiniMaxAI/MiniMax-M2
     label: config.json
     url: https://huggingface.co/MiniMaxAI/MiniMax-M2/blob/main/config.json
+  tech_report:
+    url: https://arxiv.org/abs/2605.26494
 MiniMax M2.5 230B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/minimax-m2-5-230b.webp"
   date: '2026-02-12'
@@ -845,13 +1013,15 @@ MiniMax M2.5 230B:
   layer_mix: '62 GQA'
   kv_cache_per_token_bf16: '248 KiB'
   highlight: Deliberately avoids sliding-window or linear-attention hybrids while keeping a 10B active path and three MTP modules.
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '42.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/minimax-m2-5
   config:
     repo: MiniMaxAI/MiniMax-M2.5
     label: config.json
     url: https://huggingface.co/MiniMaxAI/MiniMax-M2.5/blob/main/config.json
+  tech_report:
+    url: https://arxiv.org/abs/2605.26494
 MiniMax M2.7 230B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/minimax-m2-7-230b.webp"
   date: '2026-03-18'
@@ -874,7 +1044,7 @@ MiniMax M2.7 230B:
     url: https://huggingface.co/MiniMaxAI/MiniMax-M2.7/blob/main/config.json
   hide_article_link: true
   tech_report:
-    url: https://www.minimax.io/news/minimax-m27-en
+    url: https://arxiv.org/abs/2605.26494
 Mistral Large 3:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/mistral-3-large-673-billion.webp"
   date: '2025-12-02'
@@ -1029,6 +1199,29 @@ Nemotron 3 Super 120B-A12B:
     url: https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/blob/main/config.json
   tech_report:
     url: https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Super-Technical-Report.pdf
+Nemotron 3 Ultra 550B-A55B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/nemotron-3-ultra-550b-a55b.webp"
+  date: '2026-06-04'
+  summary: NVIDIA's Ultra model scales the Nemotron 3 hybrid stack to 550B total parameters while keeping 55B active per token.
+  scale: 550B total, 55B active (10% active)
+  context_tokens: '1,000,000'
+  license_name: NVIDIA Nemotron Open Model License
+  license_url: https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-nemotron-open-model-license/
+  decoder_type: Hybrid MoE
+  attention: Mostly Mamba-2 with a few GQA layers
+  layer_mix: '12 GQA + 48 Mamba-2 + 48 MoE'
+  kv_cache_per_token_bf16: '12 KiB'
+  highlight: Scales the latent-MoE hybrid to 108 layers with 48 Mamba-2, 48 latent MoE, and 12 GQA layers.
+  aa_intelligence_index: '47.7'
+  aai_profile: 'General 60.3 · Scientific 35.7 · Coding 37.6 · Agents 57.1'
+  aa_url: https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b
+  config:
+    repo: nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4
+    label: config.json
+    url: https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4/blob/main/config.json
+  tech_report:
+    url: https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf
+  hide_article_link: true
 OLMo 2 7B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/olmo-2-7b.webp"
   date: '2024-11-25'
@@ -1042,9 +1235,9 @@ OLMo 2 7B:
   layer_mix: '32 MHA'
   kv_cache_per_token_bf16: '512 KiB'
   highlight: Uses inside-residual post-norm instead of the usual pre-norm layout.
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '9.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/olmo-2-7b
   config:
     repo: allenai/OLMo-2-1124-7B-Instruct
     label: config.json
@@ -1064,9 +1257,9 @@ OLMo 3 32B:
   layer_mix: '48 sliding-window + 16 global'
   kv_cache_per_token_bf16: '256 KiB'
   highlight: Keeps post-norm while scaling width and applying YaRN only on global layers.
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '12.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/olmo-3-32b-think
   config:
     repo: allenai/Olmo-3-32B-Think
     label: config.json
@@ -1126,6 +1319,7 @@ Phi-4:
   tech_report:
     url: https://arxiv.org/pdf/2412.08905
 Qwen3 0.6B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-0-6b.webp"
   date: '2025-04-28'
   summary: Tiny current-generation Qwen model that trades width for more depth and a low memory footprint.
   scale: 0.6B parameters
@@ -1169,6 +1363,7 @@ Qwen3 235B-A22B:
   from_scratch:
     url: https://github.com/rasbt/LLMs-from-scratch/tree/main/ch05/11_qwen3
 Qwen3 30B-A3B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-30b-a3b.webp"
   date: '2025-04-28'
   summary: Small sparse Qwen3 model that sits close to GPT-OSS in active size but uses a deeper stack.
   scale: 30B total, 3B active (10% active)
@@ -1470,9 +1665,9 @@ Tiny Aya 3.35B:
   layer_mix: '27 sliding-window + 9 global'
   kv_cache_per_token_bf16: '72 KiB'
   highlight: Runs attention and the MLP in parallel while mixing RoPE with NoPE.
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '5.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/tiny-aya-global
   config:
     repo: CohereLabs/tiny-aya-base
     label: config.json
@@ -1526,36 +1721,90 @@ Xiaomi MiMo-V2.5 310B:
   hide_article_link: true
   tech_report:
     url: https://mimo.xiaomi.com/mimo-v2-5
+Xiaomi MiMo-V2.5-Pro 1.02T:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/xiaomi-mimo25-pro.webp"
+  date: '2026-04-22'
+  summary: Trillion-parameter sparse MoE model for long-horizon agentic and software-engineering tasks.
+  scale: 1.02T total, 42B active (4.1% active)
+  context_tokens: '1,048,576'
+  vocab_size: '152,576 (~152k)'
+  license_name: MIT License
+  license_url: https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/blob/main/README.md
+  decoder_type: Sparse MoE
+  attention: GQA with 6:1 sliding-window/global attention
+  layer_mix: '60 sliding-window + 10 global'
+  kv_cache_per_token_bf16: '350 KiB'
+  highlight: Scales the MiMo-V2.5 Pro stack to 70 layers, 384 routed experts, top-8 routing, and a 1M-token context window.
+  aa_intelligence_index: '53.8'
+  aai_profile: 'General 62.8 · Scientific 39.5 · Coding 45.5 · Agents 67.4'
+  aa_url: https://artificialanalysis.ai/models/mimo-v2-5-pro
+  config:
+    repo: XiaomiMiMo/MiMo-V2.5-Pro
+    label: config.json
+    url: https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://mimo.xiaomi.com/mimo-v2-5
 ZAYA1-8B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/zaya1-8b.webp"
   date: '2026-05-06'
-  summary: Zyphra's compact reasoning MoE alternates CCA attention and routed expert layers to keep fewer than 1B parameters active per token.
-  scale: 8.4B total, 760M active (9% active)
+  summary: Zyphra's compact reasoning MoE pairs CCA/GQA attention updates with top-1 routed expert FFN updates to keep fewer than 1B parameters active per token.
+  scale: 8.4B total, 760M active/token (9% active)
   context_tokens: '131,072'
   vocab_size: '262,272'
   license_name: Apache License 2.0
   license_url: https://huggingface.co/Zyphra/ZAYA1-8B/blob/main/README.md
   decoder_type: Sparse MoE
   attention: CCA with 4:1 GQA, RoPE, and Q/K L2 norm
-  layer_mix: '40 CCA attention + 40 MoE'
+  layer_mix: '40 CCA/GQA attention + 40 top-1 MoE FFN entries'
   kv_cache_per_token_bf16: '40 KiB'
-  highlight: Alternates CCA attention and MoE layer entries; the router selects 1 of 16 SwiGLU experts, leaving roughly 760M parameters active per token.
+  highlight: "Key detail is CCA/GQA attention, which performs attention in a compressed latent space while keeping a 4:1 GQA layout. Sidenote: the config lists 80 alternating layer entries, equivalent to 40 CCA/GQA attention updates paired with 40 top-1 MoE FFN updates."
   related_concepts:
+    - cca
     - gqa
     - moe
     - rmsnorm
     - rope
     - silu
-  aa_intelligence_index: 'N/A'
+  aa_intelligence_index: '14.0'
   aai_profile: 'N/A'
-  aa_url:
+  aa_url: https://artificialanalysis.ai/models/zaya1-8b
   config:
     repo: Zyphra/ZAYA1-8B
     label: config.json
     url: https://huggingface.co/Zyphra/ZAYA1-8B/blob/main/config.json
-  hide_article_link: true
   tech_report:
     url: https://arxiv.org/abs/2605.05365
+Command A+ 218B-A25B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/command-a-plus.webp"
+  date: '2026-05-20'
+  summary: Cohere's open sparse MoE model scales the Command A parallel transformer block to 218B total parameters while keeping 25B active per token.
+  scale: 218B total, 25B active/token (11.5% active)
+  context_tokens: '128K input, 64K output'
+  vocab_size: '262,144'
+  license_name: Apache License 2.0
+  license_url: https://huggingface.co/CohereLabs/command-a-plus-05-2026-w4a4/blob/main/README.md
+  decoder_type: Sparse MoE
+  attention: 16:1 GQA with 3:1 sliding-window/global attention
+  layer_mix: '24 sliding-window + 8 global GQA/MoE'
+  kv_cache_per_token_bf16: '128 KiB'
+  highlight: Runs attention and MoE in parallel, which Cohere reports gives similar quality to a sequential block with better throughput.
+  related_concepts:
+    - gqa
+    - moe
+    - rope
+    - nope
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: CohereLabs/command-a-plus-05-2026-w4a4
+    label: config.json
+    url: https://huggingface.co/CohereLabs/command-a-plus-05-2026-w4a4/blob/main/config.json
+  tech_report:
+    url: https://cohere.com/blog/command-a-plus
+  hide_article_link: true
 xLSTM 7B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/xlstm-7b.webp"
   date: '2025-03-17'
