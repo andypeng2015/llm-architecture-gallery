@@ -661,6 +661,29 @@ Kimi K2.6:
   hide_article_link: true
   tech_report:
     url: https://www.kimi.com/blog/kimi-k2-6.html
+Kimi K2.7 Code:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/kimi-k2-7-code.webp"
+  date: '2026-06-12'
+  summary: Coding-focused K2.6 successor that keeps the same 1T sparse MoE text backbone and emphasizes long-horizon software engineering agents.
+  scale: 1T total, 32B active (3.2% active)
+  context_tokens: '256,000'
+  license_name: Modified MIT License
+  license_url: https://huggingface.co/moonshotai/Kimi-K2.7-Code/blob/main/LICENSE
+  decoder_type: Sparse MoE
+  attention: MLA
+  layer_mix: '61 MLA'
+  kv_cache_per_token_bf16: '68.6 KiB'
+  highlight: Keeps the Kimi K2.5/K2.6 text architecture and shifts the release focus toward coding-agent workflows.
+  aa_intelligence_index: N/A
+  aai_profile: N/A
+  aa_url:
+  config:
+    repo: moonshotai/Kimi-K2.7-Code
+    label: config.json
+    url: https://huggingface.co/moonshotai/Kimi-K2.7-Code/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://huggingface.co/moonshotai/Kimi-K2.7-Code
 Kimi Linear 48B-A3B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/kimi-linear-48b-a3b.webp"
   date: '2025-10-30'
@@ -1045,6 +1068,29 @@ MiniMax M2.7 230B:
   hide_article_link: true
   tech_report:
     url: https://arxiv.org/abs/2605.26494
+MiniMax M3 428B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/minimax-m3.webp"
+  date: '2026-06-13'
+  summary: Native multimodal MiniMax model that adds sparse attention to an M2-style MoE backbone for 1M-token context.
+  scale: 428B total, 23B active (5.4% active)
+  context_tokens: '1,048,576'
+  license_name: MiniMax Community License
+  license_url: https://huggingface.co/MiniMaxAI/MiniMax-M3/blob/main/LICENSE
+  decoder_type: Sparse MoE
+  attention: GQA with QK-Norm and MiniMax Sparse Attention
+  layer_mix: '3 full GQA + 57 MiniMax Sparse Attention'
+  kv_cache_per_token_bf16: '120 KiB'
+  highlight: Uses three dense prefix layers, then 57 sparse-attention MoE layers with 128 routed experts and 4 routed plus 1 shared expert active per token.
+  aa_intelligence_index: N/A
+  aai_profile: N/A
+  aa_url:
+  config:
+    repo: MiniMaxAI/MiniMax-M3
+    label: config.json
+    url: https://huggingface.co/MiniMaxAI/MiniMax-M3/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://arxiv.org/abs/2606.13392
 Mistral Large 3:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/mistral-3-large-673-billion.webp"
   date: '2025-12-02'
@@ -1775,6 +1821,38 @@ ZAYA1-8B:
     url: https://huggingface.co/Zyphra/ZAYA1-8B/blob/main/config.json
   tech_report:
     url: https://arxiv.org/abs/2605.05365
+North Mini Code 30B-A3B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/north-mini-code.webp"
+  date: '2026-06-05'
+  summary: Cohere's compact agentic coding MoE adapts the parallel Cohere2-MoE block to a 30B total, 3B active model.
+  scale: 30B total, 3B active (10% active)
+  context_tokens: '256K input, 64K output'
+  vocab_size: '262,144'
+  license_name: Apache License 2.0
+  license_url: https://huggingface.co/CohereLabs/North-Mini-Code-1.0/blob/main/README.md
+  decoder_type: Sparse MoE
+  attention: 8:1 GQA with 3:1 sliding-window/global attention
+  layer_mix: '36 sliding-window + 13 global GQA/MoE'
+  kv_cache_per_token_bf16: '98 KiB'
+  highlight: Runs attention and MoE in parallel, with RoPE in sliding-window layers, NoPE in global layers, and top-8 routing over 128 experts.
+  related_concepts:
+    - gqa
+    - swa
+    - moe
+    - rmsnorm
+    - rope
+    - nope
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: CohereLabs/North-Mini-Code-1.0
+    label: config.json
+    url: https://huggingface.co/CohereLabs/North-Mini-Code-1.0/blob/main/config.json
+  tech_report:
+    url: https://huggingface.co/blog/CohereLabs/introducing-north-mini-code
+  hide_article_link: true
 Command A+ 218B-A25B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/command-a-plus.webp"
   date: '2026-05-20'
