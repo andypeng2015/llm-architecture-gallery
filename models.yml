@@ -12,8 +12,8 @@ Arcee AI Trinity Large 400B:
   layer_mix: '45 sliding-window + 15 global'
   kv_cache_per_token_bf16: '240 KiB'
   highlight: Combines QK-Norm, RoPE+NoPE, sandwich norm, and a coarse-grained MoE.
-  aa_intelligence_index: '31.9'
-  aai_profile: 'General 31.4 · Scientific 26.4 · Coding 27.2 · Agents 42.6'
+  aa_intelligence_index: '24.5'
+  aai_profile: 'General 31.3 · Scientific 26.3 · Coding 27.2 · Agents 42.6'
   aa_url: https://artificialanalysis.ai/models/trinity-large-thinking
   config:
     repo: arcee-ai/Trinity-Large-Base
@@ -34,7 +34,7 @@ DeepSeek R1:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: Architecture matches DeepSeek V3, including the MTP-1 path; the main change is the reasoning-oriented training recipe.
-  aa_intelligence_index: '18.8'
+  aa_intelligence_index: '12.6'
   aai_profile: 'General 33.1 · Scientific 22.5 · Coding 15.9 · Agents 3.8'
   aa_url: https://artificialanalysis.ai/models/deepseek-r1-0120
   config:
@@ -56,7 +56,7 @@ DeepSeek V3:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: Uses a dense prefix, shared expert, and MTP-1 objective to keep a very large model practical.
-  aa_intelligence_index: '16.5'
+  aa_intelligence_index: '10.4'
   aai_profile: 'General 24.9 · Scientific 15.7 · Coding 16.4 · Agents 8.8'
   aa_url: https://artificialanalysis.ai/models/deepseek-v3
   config:
@@ -78,7 +78,7 @@ DeepSeek V3.2:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: Adds sparse attention while retaining the DeepSeek V3-style MTP path.
-  aa_intelligence_index: '32.1'
+  aa_intelligence_index: '24.7'
   aai_profile: 'General 29.7 · Scientific 24.2 · Coding 34.6 · Agents 39.8'
   aa_url: https://artificialanalysis.ai/models/deepseek-v3-2
   config:
@@ -107,8 +107,8 @@ DeepSeek V4-Pro:
     - deepseek_sparse_attention
     - moe
     - mtp
-  aa_intelligence_index: '51.5'
-  aai_profile: 'General 48.0 · Scientific 43.4 · Coding 47.5 · Agents 67.2'
+  aa_intelligence_index: '44.3'
+  aai_profile: 'General 48.0 · Scientific 43.3 · Coding 47.5 · Agents 67.2'
   aa_url: https://artificialanalysis.ai/models/deepseek-v4-pro
   config:
     repo: deepseek-ai/DeepSeek-V4-Pro
@@ -136,7 +136,7 @@ DeepSeek V4-Flash:
     - deepseek_sparse_attention
     - moe
     - mtp
-  aa_intelligence_index: '46.5'
+  aa_intelligence_index: '40.3'
   aai_profile: 'General 45.9 · Scientific 40.2 · Coding 38.7 · Agents 61.3'
   aa_url: https://artificialanalysis.ai/models/deepseek-v4-flash
   config:
@@ -158,8 +158,8 @@ GLM-4.5 355B:
   layer_mix: '92 GQA'
   kv_cache_per_token_bf16: '368 KiB'
   highlight: Starts with three dense layers before MoE routing, keeps a shared expert, and uses MTP during training.
-  aa_intelligence_index: '26.4'
-  aai_profile: 'General 37.5 · Scientific 25.6 · Coding 26.3 · Agents 16.2'
+  aa_intelligence_index: '19.5'
+  aai_profile: 'General 37.6 · Scientific 25.7 · Coding 26.3 · Agents 16.2'
   aa_url: https://artificialanalysis.ai/models/glm-4.5
   config:
     repo: zai-org/GLM-4.5
@@ -180,7 +180,7 @@ GLM-4.5-Air:
   layer_mix: '46 GQA'
   kv_cache_per_token_bf16: '184 KiB'
   highlight: Shrinks the GLM-4.5 layout to 46 layers, keeps the dense warmup, and inherits the MTP training recipe.
-  aa_intelligence_index: '23.2'
+  aa_intelligence_index: '16.5'
   aai_profile: 'General 26.1 · Scientific 21.7 · Coding 23.8 · Agents 21.0'
   aa_url: https://artificialanalysis.ai/models/glm-4-5-air
   config:
@@ -203,8 +203,8 @@ GLM-4.7 355B:
   layer_mix: '92 GQA'
   kv_cache_per_token_bf16: '368 KiB'
   highlight: Serves as the pre-MLA, pre-sparse-attention baseline and uses an MTP-3-style setup.
-  aa_intelligence_index: '34.2'
-  aai_profile: 'General 30.6 · Scientific 19.7 · Coding 32.0 · Agents 54.3'
+  aa_intelligence_index: '26.6'
+  aai_profile: 'General 30.7 · Scientific 19.6 · Coding 32.0 · Agents 54.3'
   aa_url: https://artificialanalysis.ai/models/glm-4-7-non-reasoning
   config:
     repo: zai-org/GLM-4.7
@@ -225,8 +225,8 @@ GLM-5 744B:
   layer_mix: '78 MLA'
   kv_cache_per_token_bf16: '87.8 KiB'
   highlight: Bigger than GLM-4.7, with more experts, fewer layers, and DeepSeek-style MTP.
-  aa_intelligence_index: '40.6'
-  aai_profile: 'General 42.8 · Scientific 20.2 · Coding 39.0 · Agents 60.3'
+  aa_intelligence_index: '32.4'
+  aai_profile: 'General 42.7 · Scientific 20.2 · Coding 39.0 · Agents 60.3'
   aa_url: https://artificialanalysis.ai/models/glm-5-non-reasoning
   config:
     repo: zai-org/GLM-5
@@ -247,13 +247,36 @@ GLM-5.1:
   layer_mix: '78 MLA'
   kv_cache_per_token_bf16: '87.8 KiB'
   highlight: Architecture stays aligned with GLM-5, including its MTP-capable backbone; the main shift is post-training.
-  aa_intelligence_index: '51.4'
-  aai_profile: 'General 58.4 · Scientific 36.9 · Coding 43.4 · Agents 67.0'
+  aa_intelligence_index: '40.2'
+  aai_profile: 'General 58.4 · Scientific 36.9 · Coding 43.4 · Agents 67.1'
   aa_url: https://artificialanalysis.ai/models/glm-5-1
   config:
     repo: zai-org/GLM-5.1
     label: config.json
     url: https://huggingface.co/zai-org/GLM-5.1/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://arxiv.org/pdf/2602.15763
+GLM-5.2:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/glm-5.2.webp"
+  date: '2026-06-17'
+  summary: Long-context GLM refresh that keeps the 744B sparse MoE backbone and adds IndexShare for 1M-token DSA inference.
+  scale: 744B total, 40B active (5.4% active)
+  context_tokens: '1,048,576'
+  license_name: MIT License
+  license_url: https://huggingface.co/zai-org/GLM-5.2/blob/main/README.md
+  decoder_type: Sparse MoE
+  attention: MLA with DeepSeek Sparse Attention and IndexShare
+  layer_mix: 78 MLA/DSA
+  kv_cache_per_token_bf16: '87.8 KiB'
+  highlight: Reuses each full DSA indexer result across the next three layers, making 1M-token sparse attention cheaper.
+  aa_intelligence_index: '50.7'
+  aai_profile: 'General 60.4 · Scientific 47.7 · Coding 67.0 · Agents 43.1'
+  aa_url: https://artificialanalysis.ai/models/glm-5-2
+  config:
+    repo: zai-org/GLM-5.2
+    label: config.json
+    url: https://huggingface.co/zai-org/GLM-5.2/blob/main/config.json
   hide_article_link: true
   tech_report:
     url: https://arxiv.org/pdf/2602.15763
@@ -292,7 +315,7 @@ GPT-OSS 120B:
   layer_mix: '18 sliding-window + 18 global'
   kv_cache_per_token_bf16: '72 KiB'
   highlight: Shared architectural template scaled up for OpenAI's flagship open-weight release.
-  aa_intelligence_index: '33.3'
+  aa_intelligence_index: '23.8'
   aai_profile: 'General 37.5 · Scientific 29.1 · Coding 28.6 · Agents 37.9'
   aa_url: https://artificialanalysis.ai/models/gpt-oss-120b
   config:
@@ -314,8 +337,8 @@ GPT-OSS 20B:
   layer_mix: '12 sliding-window + 12 global'
   kv_cache_per_token_bf16: '48 KiB'
   highlight: Wider and shallower than Qwen3, with attention bias and sink mechanisms.
-  aa_intelligence_index: '24.5'
-  aai_profile: 'General 29.3 · Scientific 22.5 · Coding 18.5 · Agents 27.6'
+  aa_intelligence_index: '14.9'
+  aai_profile: 'General 29.3 · Scientific 22.4 · Coding 18.5 · Agents 27.6'
   aa_url: https://artificialanalysis.ai/models/gpt-oss-20b
   config:
     repo: openai/gpt-oss-20b
@@ -337,7 +360,7 @@ Gemma 3 270M:
   layer_mix: '15 sliding-window + 3 global'
   kv_cache_per_token_bf16: '18 KiB'
   highlight: Keeps the Gemma 3 stack shape while shrinking down to 4 attention heads, a single KV head, and the same 262k vocabulary.
-  aa_intelligence_index: '7.7'
+  aa_intelligence_index: '2.4'
   aai_profile: 'General 20.1 · Scientific 7.7 · Coding 0.0 · Agents 3.0'
   aa_url: https://artificialanalysis.ai/models/gemma-3-270m
   config:
@@ -362,8 +385,8 @@ Gemma 3 27B:
   layer_mix: '52 sliding-window + 10 global'
   kv_cache_per_token_bf16: '496 KiB'
   highlight: Built around a 27B sweet spot with heavier local attention and a large 262k multilingual vocabulary.
-  aa_intelligence_index: '10.3'
-  aai_profile: 'General 15.1 · Scientific 13.0 · Coding 9.6 · Agents 3.5'
+  aa_intelligence_index: '4.8'
+  aai_profile: 'General 15.1 · Scientific 13.1 · Coding 9.6 · Agents 3.5'
   aa_url: https://artificialanalysis.ai/models/gemma-3-27b
   config:
     repo: google/gemma-3-27b-it
@@ -387,7 +410,7 @@ Gemma 4 26B-A4B:
   layer_mix: '25 sliding-window + 5 global'
   kv_cache_per_token_bf16: '210 KiB'
   highlight: Uses 128 total experts with only 8 routed plus 1 shared expert active per token.
-  aa_intelligence_index: '27.1'
+  aa_intelligence_index: '20.1'
   aai_profile: 'General 27.1 · Scientific 23.2 · Coding 29.1 · Agents 28.9'
   aa_url: https://artificialanalysis.ai/models/gemma-4-26b-a4b-non-reasoning
   config:
@@ -410,7 +433,7 @@ Gemma 4 31B:
   layer_mix: '50 sliding-window + 10 global'
   kv_cache_per_token_bf16: '840 KiB'
   highlight: Carries Gemma's unusual pre/post-norm stack into a larger 31B dense model with 256K context.
-  aa_intelligence_index: '32.3'
+  aa_intelligence_index: '24.8'
   aai_profile: 'General 31.1 · Scientific 24.8 · Coding 33.9 · Agents 39.4'
   aa_url: https://artificialanalysis.ai/models/gemma-4-31b-non-reasoning
   config:
@@ -433,9 +456,9 @@ Gemma 4 12B:
   layer_mix: '40 sliding-window + 8 global'
   kv_cache_per_token_bf16: '328 KiB'
   highlight: Figure shows the 48-layer text decoder; the full 12B Unified model also projects audio, image, and video inputs directly into the decoder input stream.
-  aa_intelligence_index: 'N/A'
-  aai_profile: 'N/A'
-  aa_url:
+  aa_intelligence_index: '13.2'
+  aai_profile: 'General 28.6 · Scientific 19.6 · Coding 17.5 · Agents 12.4'
+  aa_url: https://artificialanalysis.ai/models/gemma-4-12b-non-reasoning
   config:
     repo: google/gemma-4-12B-it
     label: config.json
@@ -462,7 +485,7 @@ Gemma 4 E2B:
     - swa
     - kv_sharing
     - per_layer_embeddings
-  aa_intelligence_index: '12.1'
+  aa_intelligence_index: '6.4'
   aai_profile: 'General 20.3 · Scientific 12.4 · Coding 8.3 · Agents 7.4'
   aa_url: https://artificialanalysis.ai/models/gemma-4-e2b-non-reasoning
   config:
@@ -493,7 +516,7 @@ Gemma 4 E4B:
     - swa
     - kv_sharing
     - per_layer_embeddings
-  aa_intelligence_index: '14.8'
+  aa_intelligence_index: '8.9'
   aai_profile: 'General 28.1 · Scientific 16.2 · Coding 6.4 · Agents 8.7'
   aa_url: https://artificialanalysis.ai/models/gemma-4-e4b-non-reasoning
   config:
@@ -518,8 +541,8 @@ Granite 4.1 30B:
   layer_mix: '64 GQA'
   kv_cache_per_token_bf16: '256 KiB'
   highlight: Uses a 4096-wide dense stack, 32 query heads, 8 KV heads, SwiGLU MLPs, shared input/output embeddings, and Granite-specific MuP scaling factors.
-  aa_intelligence_index: '15.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '8.9'
+  aai_profile: 'General 20.5 · Scientific 14.1 · Coding 10.1 · Agents 14.0'
   aa_url: https://artificialanalysis.ai/models/granite-4-1-30b/
   config:
     repo: ibm-granite/granite-4.1-30b
@@ -561,8 +584,8 @@ Tencent Hy3-preview 295B-A21B:
   layer_mix: '80 GQA + 1 MTP layer'
   kv_cache_per_token_bf16: '320 KiB'
   highlight: Uses 192 routed experts, 8 routed plus 1 shared expert active per token, sigmoid routing with expert bias, and a 3.8B MTP layer.
-  aa_intelligence_index: '33.7'
-  aai_profile: 'General 32.1 · Scientific 21.5 · Coding 34.3 · Agents 46.7'
+  aa_intelligence_index: '26.1'
+  aai_profile: 'General 32.1 · Scientific 21.6 · Coding 34.3 · Agents 46.7'
   aa_url: https://artificialanalysis.ai/models/hy3-non-reasoning
   config:
     repo: tencent/Hy3-preview
@@ -584,8 +607,8 @@ INTELLECT-3:
   layer_mix: '46 GQA'
   kv_cache_per_token_bf16: '184 KiB'
   highlight: Keeps the GLM-4.5-Air architecture unchanged and shifts the capability profile through SFT plus large-scale RL.
-  aa_intelligence_index: '22.2'
-  aai_profile: 'General 24.6 · Scientific 25.1 · Coding 19.1 · Agents 19.8'
+  aa_intelligence_index: '15.6'
+  aai_profile: 'General 24.7 · Scientific 25.1 · Coding 19.1 · Agents 19.8'
   aa_url: https://artificialanalysis.ai/models/intellect-3
   config:
     repo: PrimeIntellect/INTELLECT-3
@@ -607,7 +630,7 @@ Kimi K2:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: More experts and fewer MLA heads than DeepSeek V3.
-  aa_intelligence_index: '26.3'
+  aa_intelligence_index: '19.4'
   aai_profile: 'General 36.3 · Scientific 22.6 · Coding 22.1 · Agents 24.3'
   aa_url: https://artificialanalysis.ai/models/kimi-k2
   config:
@@ -629,7 +652,7 @@ Kimi K2.5:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: Keeps the 384-expert K2 backbone, but adds multimodal capabilities (not shown) and doubles the native context length.
-  aa_intelligence_index: '37.3'
+  aa_intelligence_index: '29.4'
   aai_profile: 'General 44.4 · Scientific 26.0 · Coding 25.8 · Agents 52.8'
   aa_url: https://artificialanalysis.ai/models/kimi-k2-5-non-reasoning
   config:
@@ -651,7 +674,7 @@ Kimi K2.6:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: Uses the same text architecture as Kimi K2.5, with the main change coming from the multimodal and agentic training recipe.
-  aa_intelligence_index: '53.9'
+  aa_intelligence_index: '42.8'
   aai_profile: 'General 59.8 · Scientific 42.7 · Coding 47.1 · Agents 66.0'
   aa_url: https://artificialanalysis.ai/models/kimi-k2-6
   config:
@@ -674,9 +697,9 @@ Kimi K2.7 Code:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: Keeps the Kimi K2.5/K2.6 text architecture and shifts the release focus toward coding-agent workflows.
-  aa_intelligence_index: N/A
-  aai_profile: N/A
-  aa_url:
+  aa_intelligence_index: '41.9'
+  aai_profile: 'General 46.9 · Scientific 41.3 · Coding 45.6 · Agents 61.9'
+  aa_url: https://artificialanalysis.ai/models/kimi-k2-7-code
   config:
     repo: moonshotai/Kimi-K2.7-Code
     label: config.json
@@ -697,7 +720,7 @@ Kimi Linear 48B-A3B:
   layer_mix: '7 MLA + 20 Kimi Delta Attention'
   kv_cache_per_token_bf16: '7.9 KiB'
   highlight: Uses NoPE in MLA layers and channel-wise gating for long-context efficiency.
-  aa_intelligence_index: '14.4'
+  aa_intelligence_index: '8.5'
   aai_profile: 'General N/A · Scientific N/A · Coding 14.2 · Agents N/A'
   aa_url: https://artificialanalysis.ai/models/kimi-linear-48b-a3b-instruct
   config:
@@ -780,9 +803,9 @@ LFM2.5 1.2B:
     - gqa
     - rmsnorm
     - silu
-  aa_intelligence_index: 'N/A'
-  aai_profile: 'N/A'
-  aa_url:
+  aa_intelligence_index: '2.7'
+  aai_profile: 'General 12.9 · Scientific 11.5 · Coding 1.4 · Agents 6.5'
+  aa_url: https://artificialanalysis.ai/models/lfm2-5-1-2b-thinking
   config:
     repo: LiquidAI/LFM2.5-1.2B-Thinking
     label: config.json
@@ -809,9 +832,9 @@ LFM2.5 8B-A1B:
     - moe
     - rmsnorm
     - silu
-  aa_intelligence_index: 'N/A'
-  aai_profile: 'N/A'
-  aa_url:
+  aa_intelligence_index: '8.3'
+  aai_profile: 'General 29.5 · Scientific 16.3 · Coding 5.6 · Agents 5.4'
+  aa_url: https://artificialanalysis.ai/models/lfm2-5-8b-a1b
   config:
     repo: LiquidAI/LFM2.5-8B-A1B
     label: config.json
@@ -852,8 +875,8 @@ Ling 2.6 1T:
   layer_mix: '10 MLA + 70 Lightning Attention + 1 MTP layer'
   kv_cache_per_token_bf16: '11.2 KiB'
   highlight: Keeps the 7:1 linear-attention/MLA ratio and adds one multi-token-prediction layer for speculative decoding.
-  aa_intelligence_index: '33.6'
-  aai_profile: 'General 30.2 · Scientific 23.0 · Coding 33.0 · Agents 48.2'
+  aa_intelligence_index: '26.1'
+  aai_profile: 'General 30.2 · Scientific 23.0 · Coding 33.1 · Agents 48.2'
   aa_url: https://artificialanalysis.ai/models/ling-2-6-1t
   config:
     repo: inclusionAI/Ling-2.6-1T
@@ -882,7 +905,7 @@ LongCat-Flash-Lite 68.5B-A3B:
     - rmsnorm
     - rope
     - silu
-  aa_intelligence_index: '23.9'
+  aa_intelligence_index: '17.2'
   aai_profile: 'General 21.5 · Scientific 18.9 · Coding 16.5 · Agents 38.8'
   aa_url: https://artificialanalysis.ai/models/longcat-flash-lite
   config:
@@ -905,8 +928,8 @@ Llama 3.2 1B:
   layer_mix: '16 GQA'
   kv_cache_per_token_bf16: '32 KiB'
   highlight: Wider architecture with more heads than Qwen3 0.6B.
-  aa_intelligence_index: '6.3'
-  aai_profile: 'General 17.0 · Scientific 7.6 · Coding 0.6 · Agents 0.0'
+  aa_intelligence_index: '1.1'
+  aai_profile: 'General 17.0 · Scientific 7.5 · Coding 0.6 · Agents 0.0'
   aa_url: https://artificialanalysis.ai/models/llama-3-2-instruct-1b
   from_scratch:
     url: https://github.com/rasbt/LLMs-from-scratch/tree/main/ch05/07_gpt_to_llama
@@ -923,8 +946,8 @@ Llama 3 8B:
   layer_mix: '32 GQA'
   kv_cache_per_token_bf16: '128 KiB'
   highlight: Pre-norm baseline; wider than OLMo 2 at a similar scale.
-  aa_intelligence_index: '6.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '1.2'
+  aai_profile: 'General 11.6 · Scientific 10.0 · Coding 4.0 · Agents 0.0'
   aa_url: https://artificialanalysis.ai/models/llama-3-instruct-8b
   config:
     repo: meta-llama/Meta-Llama-3-8B
@@ -947,7 +970,7 @@ Llama 3.2 3B:
   layer_mix: '28 GQA'
   kv_cache_per_token_bf16: '112 KiB'
   highlight: Reference small-model Llama architecture with tied embeddings.
-  aa_intelligence_index: '9.7'
+  aa_intelligence_index: '4.2'
   aai_profile: 'N/A'
   aa_url: https://artificialanalysis.ai/models/llama-3-2-instruct-3b
 Llama 4 Maverick:
@@ -963,8 +986,8 @@ Llama 4 Maverick:
   layer_mix: '36 chunked + 12 full GQA'
   kv_cache_per_token_bf16: '192 KiB'
   highlight: Alternates dense and MoE blocks and uses fewer, larger experts than DeepSeek V3.
-  aa_intelligence_index: '18.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '14.3'
+  aai_profile: 'General 31.5 · Scientific 19.2 · Coding 15.6 · Agents 7.2'
   aa_url: https://artificialanalysis.ai/models/llama-4-maverick
   config:
     repo: meta-llama/Llama-4-Maverick-17B-128E-Instruct
@@ -1014,8 +1037,8 @@ MiniMax M2 230B:
   layer_mix: '62 GQA'
   kv_cache_per_token_bf16: '248 KiB'
   highlight: Uses per-layer QK-Norm, much sparser MoE routing than Qwen3, and MTP during training.
-  aa_intelligence_index: '36.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '28.3'
+  aai_profile: 'General 41.7 · Scientific 25.9 · Coding 29.2 · Agents 47.5'
   aa_url: https://artificialanalysis.ai/models/minimax-m2
   config:
     repo: MiniMaxAI/MiniMax-M2
@@ -1036,8 +1059,8 @@ MiniMax M2.5 230B:
   layer_mix: '62 GQA'
   kv_cache_per_token_bf16: '248 KiB'
   highlight: Deliberately avoids sliding-window or linear-attention hybrids while keeping a 10B active path and three MTP modules.
-  aa_intelligence_index: '42.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '33.7'
+  aai_profile: 'General 43.6 · Scientific 31.1 · Coding 37.4 · Agents 55.6'
   aa_url: https://artificialanalysis.ai/models/minimax-m2-5
   config:
     repo: MiniMaxAI/MiniMax-M2.5
@@ -1058,8 +1081,8 @@ MiniMax M2.7 230B:
   layer_mix: '62 GQA'
   kv_cache_per_token_bf16: '248 KiB'
   highlight: Keeps the M2.5-style 62-layer sparse MoE stack and adds three MTP modules for speculative decoding support.
-  aa_intelligence_index: '49.6'
-  aai_profile: 'General 59.0 · Scientific 36.1 · Coding 41.9 · Agents 61.5'
+  aa_intelligence_index: '38.1'
+  aai_profile: 'General 59.0 · Scientific 36.0 · Coding 41.9 · Agents 61.5'
   aa_url: https://artificialanalysis.ai/models/minimax-m2-7
   config:
     repo: MiniMaxAI/MiniMax-M2.7
@@ -1081,9 +1104,9 @@ MiniMax M3 428B:
   layer_mix: '3 full GQA + 57 MiniMax Sparse Attention'
   kv_cache_per_token_bf16: '120 KiB'
   highlight: Uses three dense prefix layers, then 57 sparse-attention MoE layers with 128 routed experts and 4 routed plus 1 shared expert active per token.
-  aa_intelligence_index: N/A
-  aai_profile: N/A
-  aa_url:
+  aa_intelligence_index: '44.4'
+  aai_profile: 'General 64.0 · Scientific 42.7 · Coding 43.4 · Agents 68.6'
+  aa_url: https://artificialanalysis.ai/models/minimax-m3
   config:
     repo: MiniMaxAI/MiniMax-M3
     label: config.json
@@ -1104,8 +1127,8 @@ Mistral Large 3:
   layer_mix: '61 MLA'
   kv_cache_per_token_bf16: '68.6 KiB'
   highlight: Near-clone of DeepSeek V3 with larger experts, fewer routed experts, and multimodal support.
-  aa_intelligence_index: '22.8'
-  aai_profile: 'General 27.8 · Scientific 19.1 · Coding 22.7 · Agents 21.7'
+  aa_intelligence_index: '16.2'
+  aai_profile: 'General 27.8 · Scientific 19.0 · Coding 22.7 · Agents 21.7'
   aa_url: https://artificialanalysis.ai/models/mistral-large-3
   config:
     repo: mistralai/Mistral-Large-3-675B-Instruct-2512
@@ -1124,8 +1147,8 @@ Mistral Small 3.1 24B:
   layer_mix: '40 GQA'
   kv_cache_per_token_bf16: '160 KiB'
   highlight: Latency-focused design with a smaller KV cache and fewer layers than Gemma 3 27B.
-  aa_intelligence_index: '14.5'
-  aai_profile: 'General 21.9 · Scientific 13.8 · Coding 13.9 · Agents 8.4'
+  aa_intelligence_index: '8.6'
+  aai_profile: 'General 21.9 · Scientific 13.7 · Coding 13.9 · Agents 8.4'
   aa_url: https://artificialanalysis.ai/models/mistral-small-3-1
   config:
     repo: mistralai/Mistral-Small-3.1-24B-Base-2503
@@ -1146,8 +1169,8 @@ Mistral Small 4:
   layer_mix: '36 MLA'
   kv_cache_per_token_bf16: '22.5 KiB'
   highlight: Uses 128 experts with 4 routed plus 1 shared expert active per token while unifying instruct, reasoning, and vision.
-  aa_intelligence_index: '27.8'
-  aai_profile: 'General 37.1 · Scientific 24.1 · Coding 24.3 · Agents 25.9'
+  aa_intelligence_index: '20.8'
+  aai_profile: 'General 37.0 · Scientific 24.0 · Coding 24.3 · Agents 25.9'
   aa_url: https://artificialanalysis.ai/models/mistral-small-4
   config:
     repo: mistralai/Mistral-Small-4-119B-2603
@@ -1169,7 +1192,7 @@ Nanbeige 4.1 3B:
   layer_mix: '32 GQA'
   kv_cache_per_token_bf16: '64 KiB'
   highlight: Llama-like stack without tying input embeddings to the output layer.
-  aa_intelligence_index: '16.1'
+  aa_intelligence_index: '10.1'
   aai_profile: 'General 22.0 · Scientific 26.2 · Coding 8.9 · Agents 7.2'
   aa_url: https://artificialanalysis.ai/models/nanbeige4-1-3b
   config:
@@ -1191,8 +1214,8 @@ Nemotron 3 Nano 30B-A3B:
   layer_mix: '6 GQA + 23 Mamba-2 + 23 MoE'
   kv_cache_per_token_bf16: '6 KiB'
   highlight: Interleaves Mamba-2 and MoE blocks, using attention only sparingly.
-  aa_intelligence_index: '13.2'
-  aai_profile: 'General 16.2 · Scientific 12.3 · Coding 15.8 · Agents 8.5'
+  aa_intelligence_index: '7.4'
+  aai_profile: 'General 16.1 · Scientific 12.3 · Coding 15.8 · Agents 8.5'
   aa_url: https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b
   config:
     repo: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16
@@ -1213,7 +1236,7 @@ Nemotron 3 Nano 4B:
   layer_mix: '4 GQA + 21 Mamba-2 + 17 FFN'
   kv_cache_per_token_bf16: '16 KiB'
   highlight: Uses a 42-layer stack with 21 Mamba-2 blocks, 17 ReLU² FFNs, and just 4 GQA layers.
-  aa_intelligence_index: '14.7'
+  aa_intelligence_index: '8.8'
   aai_profile: 'General 23.7 · Scientific 15.2 · Coding 10.0 · Agents 9.8'
   aa_url: https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-4b
   config:
@@ -1236,7 +1259,7 @@ Nemotron 3 Super 120B-A12B:
   layer_mix: '8 GQA + 40 Mamba-2 + 40 MoE'
   kv_cache_per_token_bf16: '8 KiB'
   highlight: Adds latent-space MoE and shared-weight MTP for fast inference.
-  aa_intelligence_index: '36.0'
+  aa_intelligence_index: '25.4'
   aai_profile: 'General 42.1 · Scientific 30.4 · Coding 31.2 · Agents 40.2'
   aa_url: https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b
   config:
@@ -1258,7 +1281,7 @@ Nemotron 3 Ultra 550B-A55B:
   layer_mix: '12 GQA + 48 Mamba-2 + 48 MoE'
   kv_cache_per_token_bf16: '12 KiB'
   highlight: Scales the latent-MoE hybrid to 108 layers with 48 Mamba-2, 48 latent MoE, and 12 GQA layers.
-  aa_intelligence_index: '47.7'
+  aa_intelligence_index: '37.8'
   aai_profile: 'General 60.3 · Scientific 35.7 · Coding 37.6 · Agents 57.1'
   aa_url: https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b
   config:
@@ -1281,8 +1304,8 @@ OLMo 2 7B:
   layer_mix: '32 MHA'
   kv_cache_per_token_bf16: '512 KiB'
   highlight: Uses inside-residual post-norm instead of the usual pre-norm layout.
-  aa_intelligence_index: '9.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '3.9'
+  aai_profile: 'General N/A · Scientific N/A · Coding 1.2 · Agents N/A'
   aa_url: https://artificialanalysis.ai/models/olmo-2-7b
   config:
     repo: allenai/OLMo-2-1124-7B-Instruct
@@ -1303,8 +1326,8 @@ OLMo 3 32B:
   layer_mix: '48 sliding-window + 16 global'
   kv_cache_per_token_bf16: '256 KiB'
   highlight: Keeps post-norm while scaling width and applying YaRN only on global layers.
-  aa_intelligence_index: '12.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '6.4'
+  aai_profile: 'General 19.6 · Scientific 18.2 · Coding 10.5 · Agents 0.0'
   aa_url: https://artificialanalysis.ai/models/olmo-3-32b-think
   config:
     repo: allenai/Olmo-3-32B-Think
@@ -1327,7 +1350,7 @@ OLMo 3 7B:
   layer_mix: '24 sliding-window + 8 global'
   kv_cache_per_token_bf16: '512 KiB'
   highlight: Retains post-norm, keeps MHA, and applies YaRN only on global layers.
-  aa_intelligence_index: '8.2'
+  aa_intelligence_index: '2.8'
   aai_profile: 'General 12.1 · Scientific 12.9 · Coding 3.4 · Agents 4.2'
   aa_url: https://artificialanalysis.ai/models/olmo-3-7b-instruct
   config:
@@ -1354,8 +1377,8 @@ Phi-4:
   related_concepts:
     - rmsnorm
     - gqa
-  aa_intelligence_index: '10.4'
-  aai_profile: 'General 14.0 · Scientific 16.4 · Coding 11.2 · Agents 0.0'
+  aa_intelligence_index: '4.9'
+  aai_profile: 'General 14.1 · Scientific 16.4 · Coding 11.2 · Agents 0.0'
   aa_url: https://artificialanalysis.ai/models/phi-4
   config:
     repo: microsoft/phi-4
@@ -1377,7 +1400,7 @@ Qwen3 0.6B:
   layer_mix: '28 GQA'
   kv_cache_per_token_bf16: '112 KiB'
   highlight: Deeper than Llama 3.2 1B and unusually practical for local experiments and teaching.
-  aa_intelligence_index: '5.7'
+  aa_intelligence_index: '1.0'
   aai_profile: 'General 8.1 · Scientific 8.4 · Coding 1.4 · Agents 4.9'
   aa_url: https://artificialanalysis.ai/models/qwen3-0.6b-instruct
   config:
@@ -1397,7 +1420,7 @@ Qwen3 235B-A22B:
   layer_mix: '94 GQA'
   kv_cache_per_token_bf16: '188 KiB'
   highlight: High-capacity MoE design optimized for serving efficiency without a shared expert.
-  aa_intelligence_index: '17.0'
+  aa_intelligence_index: '10.9'
   aai_profile: 'General 16.9 · Scientific 17.7 · Coding 14.0 · Agents 19.2'
   aa_url: https://artificialanalysis.ai/models/qwen3-235b-a22b-instruct
   config:
@@ -1421,7 +1444,7 @@ Qwen3 30B-A3B:
   layer_mix: '48 GQA'
   kv_cache_per_token_bf16: '96 KiB'
   highlight: Deeper, narrower MoE alternative to GPT-OSS without a shared expert.
-  aa_intelligence_index: '12.5'
+  aa_intelligence_index: '6.8'
   aai_profile: 'General 14.2 · Scientific 15.2 · Coding 13.3 · Agents 7.4'
   aa_url: https://artificialanalysis.ai/models/qwen3-30b-a3b-instruct
   config:
@@ -1441,7 +1464,7 @@ Qwen3 32B:
   layer_mix: '64 GQA'
   kv_cache_per_token_bf16: '256 KiB'
   highlight: Reference dense Qwen stack with QK-Norm and 8 KV heads.
-  aa_intelligence_index: '14.5'
+  aa_intelligence_index: '8.6'
   aai_profile: 'N/A'
   aa_url: https://artificialanalysis.ai/models/qwen3-32b-instruct
   config:
@@ -1465,7 +1488,7 @@ Qwen3 4B:
   layer_mix: '36 GQA'
   kv_cache_per_token_bf16: '144 KiB'
   highlight: Compact Qwen3 dense stack with QK-Norm and a 151k vocabulary.
-  aa_intelligence_index: '12.5'
+  aa_intelligence_index: '6.8'
   aai_profile: 'N/A'
   aa_url: https://artificialanalysis.ai/models/qwen3-4b-instruct
   config:
@@ -1489,7 +1512,7 @@ Qwen3 8B:
   layer_mix: '36 GQA'
   kv_cache_per_token_bf16: '144 KiB'
   highlight: Reference Qwen3 dense stack with QK-Norm and 8 KV heads.
-  aa_intelligence_index: '10.6'
+  aa_intelligence_index: '5.1'
   aai_profile: 'General 11.2 · Scientific 12.7 · Coding 7.1 · Agents 11.6'
   aa_url: https://artificialanalysis.ai/models/qwen3-8b-instruct
   config:
@@ -1513,7 +1536,7 @@ Qwen3 Next 80B-A3B:
   layer_mix: '12 gated attention + 36 DeltaNet'
   kv_cache_per_token_bf16: '24 KiB'
   highlight: Adds many more experts, a shared expert, native 262k context, and MTP for speculative decoding.
-  aa_intelligence_index: '20.1'
+  aa_intelligence_index: '13.7'
   aai_profile: 'General 28.9 · Scientific 22.1 · Coding 15.3 · Agents 14.2'
   aa_url: https://artificialanalysis.ai/models/qwen3-next-80b-a3b-instruct
   config:
@@ -1533,7 +1556,7 @@ Qwen3 Coder Flash 30B-A3B:
   layer_mix: '48 GQA'
   kv_cache_per_token_bf16: '96 KiB'
   highlight: Uses 128 experts with 8 active per token and a native 256k context window for coding workloads.
-  aa_intelligence_index: '20.0'
+  aa_intelligence_index: '13.6'
   aai_profile: 'General 24.6 · Scientific 14.9 · Coding 19.4 · Agents 21.1'
   aa_url: https://artificialanalysis.ai/models/qwen3-coder-30b-a3b-instruct
   config:
@@ -1555,7 +1578,7 @@ Qwen3.5 397B:
   layer_mix: '15 gated attention + 45 DeltaNet'
   kv_cache_per_token_bf16: '30 KiB'
   highlight: Turns the former Qwen3-Next side branch into the new core design with 512 experts and 17B active parameters.
-  aa_intelligence_index: '40.1'
+  aa_intelligence_index: '32.0'
   aai_profile: 'General 38.5 · Scientific 31.1 · Coding 37.4 · Agents 53.3'
   aa_url: https://artificialanalysis.ai/models/qwen3-5-397b-a17b-non-reasoning
   config:
@@ -1577,8 +1600,8 @@ Qwen3.6 35B-A3B:
   layer_mix: '10 gated attention + 30 DeltaNet'
   kv_cache_per_token_bf16: '20 KiB'
   highlight: Uses 256 experts with 8 routed plus 1 shared expert active inside a 40-layer hybrid stack.
-  aa_intelligence_index: '43.5'
-  aai_profile: 'General 49.3 · Scientific 31.2 · Coding 35.1 · Agents 58.3'
+  aa_intelligence_index: '31.6'
+  aai_profile: 'General 49.3 · Scientific 31.2 · Coding 35.2 · Agents 58.3'
   aa_url: https://artificialanalysis.ai/models/qwen3-6-35b-a3b
   config:
     repo: Qwen/Qwen3.6-35B-A3B
@@ -1600,7 +1623,7 @@ Qwen3.6 27B:
   layer_mix: '16 gated attention + 48 DeltaNet'
   kv_cache_per_token_bf16: '64 KiB'
   highlight: Uses a 64-layer dense hybrid layout with 48 DeltaNet layers and 16 full-attention layers.
-  aa_intelligence_index: '45.8'
+  aa_intelligence_index: '37.1'
   aai_profile: 'General 51.8 · Scientific 32.1 · Coding 36.5 · Agents 62.9'
   aa_url: https://artificialanalysis.ai/models/qwen3-6-27b
   config:
@@ -1623,7 +1646,7 @@ Sarvam 105B:
   layer_mix: '32 MLA'
   kv_cache_per_token_bf16: '36 KiB'
   highlight: Large vocabulary and strong Indic language support carried into the larger MLA-based sparse MoE variant.
-  aa_intelligence_index: '18.2'
+  aa_intelligence_index: '11.9'
   aai_profile: 'General 14.6 · Scientific 23.5 · Coding 9.8 · Agents 24.7'
   aa_url: https://artificialanalysis.ai/models/sarvam-105b
   config:
@@ -1645,7 +1668,7 @@ Sarvam 30B:
   layer_mix: '19 GQA'
   kv_cache_per_token_bf16: '19 KiB'
   highlight: Large vocabulary and strong Indic language support paired with a reasoning-focused sparse MoE design.
-  aa_intelligence_index: '12.3'
+  aa_intelligence_index: '6.6'
   aai_profile: 'General 10.5 · Scientific 19.4 · Coding 7.9 · Agents 11.5'
   aa_url: https://artificialanalysis.ai/models/sarvam-30b
   config:
@@ -1689,8 +1712,8 @@ Step 3.5 Flash 196B:
   layer_mix: '36 sliding-window + 12 global'
   kv_cache_per_token_bf16: '192 KiB'
   highlight: Uses MTP-3 during both training and inference for unusually high throughput.
-  aa_intelligence_index: '38.5'
-  aai_profile: 'General 38.5 · Scientific 32.5 · Coding 34.6 · Agents 48.2'
+  aa_intelligence_index: '26.0'
+  aai_profile: 'General 38.6 · Scientific 32.5 · Coding 34.6 · Agents 48.2'
   aa_url: https://artificialanalysis.ai/models/step-3-5-flash
   config:
     repo: stepfun-ai/Step-3.5-Flash
@@ -1711,8 +1734,8 @@ Tiny Aya 3.35B:
   layer_mix: '27 sliding-window + 9 global'
   kv_cache_per_token_bf16: '72 KiB'
   highlight: Runs attention and the MLP in parallel while mixing RoPE with NoPE.
-  aa_intelligence_index: '5.0'
-  aai_profile: 'N/A'
+  aa_intelligence_index: '1.0'
+  aai_profile: 'General 7.5 · Scientific 10.2 · Coding 1.2 · Agents 0.0'
   aa_url: https://artificialanalysis.ai/models/tiny-aya-global
   config:
     repo: CohereLabs/tiny-aya-base
@@ -1722,6 +1745,35 @@ Tiny Aya 3.35B:
     url: https://arxiv.org/pdf/2603.11510
   from_scratch:
     url: https://github.com/rasbt/LLMs-from-scratch/tree/main/ch05/15_tiny-aya
+VibeThinker-3B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/vibethinker-3b.webp"
+  date: '2026-06-15'
+  summary: Qwen2.5-Coder-based dense reasoner whose gains mainly come from verifier-driven post-training rather than a new block design.
+  scale: 3B parameters
+  context_tokens: '131,072'
+  vocab_size: '151,936 (~152k)'
+  license_name: MIT License
+  license_url: https://huggingface.co/WeiboAI/VibeThinker-3B/blob/main/LICENSE
+  decoder_type: Dense
+  attention: 8:1 GQA with RoPE
+  layer_mix: '36 GQA'
+  kv_cache_per_token_bf16: '36 KiB'
+  highlight: Standard Qwen2.5-Coder-style dense stack strengthened by curriculum SFT, MGPO RL, Long2Short RL, offline self-distillation, and Instruct RL.
+  related_concepts:
+    - gqa
+    - rmsnorm
+    - rope
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: WeiboAI/VibeThinker-3B
+    label: config.json
+    url: https://huggingface.co/WeiboAI/VibeThinker-3B/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://arxiv.org/abs/2606.16140
 Xiaomi MiMo-V2-Flash 309B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/xiaomi-mimo-v2-flash-309b.webp"
   date: '2025-12-16'
@@ -1735,7 +1787,7 @@ Xiaomi MiMo-V2-Flash 309B:
   layer_mix: '40 sliding-window + 8 global'
   kv_cache_per_token_bf16: '144 KiB'
   highlight: Uses an unusually small 128-token local window plus multi-token prediction.
-  aa_intelligence_index: '30.4'
+  aa_intelligence_index: '23.1'
   aai_profile: 'General 27.8 · Scientific 20.4 · Coding 25.8 · Agents 47.3'
   aa_url: https://artificialanalysis.ai/models/mimo-v2-flash
   config:
@@ -1757,7 +1809,7 @@ Xiaomi MiMo-V2.5 310B:
   layer_mix: '39 sliding-window + 9 global'
   kv_cache_per_token_bf16: '144 KiB'
   highlight: Adds native image, video, and audio encoders to the MiMo-V2-Flash-style sparse MoE backbone with MTP support.
-  aa_intelligence_index: '49.0'
+  aa_intelligence_index: '40.1'
   aai_profile: 'General 53.7 · Scientific 34.7 · Coding 42.1 · Agents 65.5'
   aa_url: https://artificialanalysis.ai/models/mimo-v2-5-0424
   config:
@@ -1781,7 +1833,7 @@ Xiaomi MiMo-V2.5-Pro 1.02T:
   layer_mix: '60 sliding-window + 10 global'
   kv_cache_per_token_bf16: '350 KiB'
   highlight: Scales the MiMo-V2.5 Pro stack to 70 layers, 384 routed experts, top-8 routing, and a 1M-token context window.
-  aa_intelligence_index: '53.8'
+  aa_intelligence_index: '42.2'
   aai_profile: 'General 62.8 · Scientific 39.5 · Coding 45.5 · Agents 67.4'
   aa_url: https://artificialanalysis.ai/models/mimo-v2-5-pro
   config:
@@ -1812,9 +1864,9 @@ ZAYA1-8B:
     - rmsnorm
     - rope
     - silu
-  aa_intelligence_index: '14.0'
+  aa_intelligence_index: 'N/A'
   aai_profile: 'N/A'
-  aa_url: https://artificialanalysis.ai/models/zaya1-8b
+  aa_url:
   config:
     repo: Zyphra/ZAYA1-8B
     label: config.json
@@ -1843,9 +1895,9 @@ North Mini Code 30B-A3B:
     - rope
     - nope
     - silu
-  aa_intelligence_index: 'N/A'
-  aai_profile: 'N/A'
-  aa_url:
+  aa_intelligence_index: '20.6'
+  aai_profile: 'General 31.3 · Scientific 23.9 · Coding 33.4 · Agents 21.7'
+  aa_url: https://artificialanalysis.ai/models/north-mini-code
   config:
     repo: CohereLabs/North-Mini-Code-1.0
     label: config.json
@@ -1873,9 +1925,9 @@ Command A+ 218B-A25B:
     - rope
     - nope
     - silu
-  aa_intelligence_index: 'N/A'
-  aai_profile: 'N/A'
-  aa_url:
+  aa_intelligence_index: '29.3'
+  aai_profile: 'General 53.7 · Scientific 24.8 · Coding 29.3 · Agents 40.9'
+  aa_url: https://artificialanalysis.ai/models/command-a-plus
   config:
     repo: CohereLabs/command-a-plus-05-2026-w4a4
     label: config.json
