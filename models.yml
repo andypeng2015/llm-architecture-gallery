@@ -1699,6 +1699,29 @@ SmolLM3 3B:
     url: https://huggingface.co/HuggingFaceTB/SmolLM3-3B-Base/blob/main/config.json
   tech_report:
     url: https://huggingface.co/blog/smollm3
+Soofi S 30B-A3B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/soofi.webp"
+  date: '2026-07-10'
+  summary: German-English base model that retrains the Nemotron 3 Nano architecture on 26.68T tokens with a fully documented data mixture.
+  scale: 31.6B total, 3.2B active (10.1% active)
+  context_tokens: '1,048,576'
+  license_name: Custom license (preview)
+  license_url: https://huggingface.co/Soofi-Project/Soofi-S-Base#license-terms-of-use
+  decoder_type: Hybrid MoE
+  attention: Mostly Mamba-2 with 6 GQA layers and no positional embeddings (NoPE)
+  layer_mix: '6 GQA + 23 Mamba-2 + 23 MoE'
+  kv_cache_per_token_bf16: '6 KiB'
+  highlight: Reuses the Nemotron 3 Nano architecture without modification, isolating the effect of a German-English data and training recipe.
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: Soofi-Project/Soofi-S-Base
+    label: config.json
+    url: https://huggingface.co/Soofi-Project/Soofi-S-Base/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://arxiv.org/abs/2607.09424
 Step 3.5 Flash 196B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/step-3-5-flash-196b.webp"
   date: '2026-02-01'
@@ -1958,3 +1981,33 @@ xLSTM 7B:
   hide_article_link: true
   tech_report:
     url: https://arxiv.org/abs/2503.13427
+Inkling:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/inkling.webp"
+  date: '2026-07-15'
+  summary: Thinking Machines Lab's native multimodal model combines a 66-layer sparse MoE decoder with a 5:1 mix of local and global GQA.
+  scale: 975B total, 41B active (4.2% active)
+  context_tokens: '1,048,576'
+  vocab_size: '200,058 (~200k)'
+  license_name: Apache License 2.0
+  license_url: https://www.apache.org/licenses/LICENSE-2.0
+  decoder_type: Sparse MoE
+  attention: GQA with QK-Norm and learned relative-position bias in a 5:1 sliding-window/global pattern
+  layer_mix: '55 sliding-window + 11 global GQA'
+  kv_cache_per_token_bf16: '484 KiB'
+  highlight: Uses learned relative-position bias instead of RoPE and adds four short convolutions to each decoder layer.
+  related_concepts:
+    - qk_norm
+    - gqa
+    - swa
+    - moe
+    - mtp
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: thinkingmachines/Inkling
+    label: config.json
+    url: https://huggingface.co/thinkingmachines/Inkling/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://thinkingmachines.ai/news/introducing-inkling/
