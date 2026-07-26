@@ -21,6 +21,65 @@ Arcee AI Trinity Large 400B:
     url: https://huggingface.co/arcee-ai/Trinity-Large-Base/blob/main/config.json
   tech_report:
     url: https://arxiv.org/pdf/2602.17004
+Antares 1B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/antares-1b.webp"
+  date: '2026-07-21'
+  summary: Cisco Foundation AI's compact terminal agent uses a dense Granite 4.0 backbone and is post-trained with SFT and GRPO for vulnerability localization.
+  scale: 1B parameters
+  context_tokens: '131,072'
+  vocab_size: '100,352'
+  license_name: Apache License 2.0
+  license_url: https://huggingface.co/fdtn-ai/antares-1b/blob/main/README.md
+  decoder_type: Dense
+  attention: GQA with RoPE
+  layer_mix: '40 GQA'
+  kv_cache_per_token_bf16: '80 KiB'
+  highlight: Retains Granite 4.0's MuP scaling multipliers and tied input/output embeddings, then adds SFT and GRPO for terminal-based vulnerability localization.
+  related_concepts:
+    - gqa
+    - rmsnorm
+    - rope
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: fdtn-ai/antares-1b
+    label: config.json
+    url: https://huggingface.co/fdtn-ai/antares-1b/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://cisco-foundation-ai.github.io/antares/technical-report.pdf
+BTL-3 27B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/btl-3-27b.webp"
+  date: '2026-07-20'
+  summary: Agent-oriented Qwen3.6-27B derivative that adds a rank-32 LoRA adapter for coding, structured tool use, and long multi-turn execution.
+  scale: 27B base + 934 MB LoRA adapter
+  context_tokens: '262,144'
+  vocab_size: '248,320 (~248k)'
+  license_name: Apache License 2.0
+  license_url: https://huggingface.co/badtheorylabs/BTL-3/blob/main/LICENSE
+  decoder_type: Dense hybrid
+  attention: 3:1 Gated DeltaNet and Gated Attention
+  layer_mix: '16 gated attention + 48 DeltaNet'
+  kv_cache_per_token_bf16: '64 KiB'
+  highlight: Retains Qwen3.6-27B's 64-layer hybrid stack while adapting its attention, DeltaNet, and FFN projections through rank-32 LoRA.
+  related_concepts:
+    - gated_deltanet
+    - gqa
+    - gated_attention
+    - qk_norm
+    - rmsnorm
+    - rope
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: badtheorylabs/BTL-3
+    label: adapter_config.json
+    url: https://huggingface.co/badtheorylabs/BTL-3/blob/main/adapter_config.json
+  hide_article_link: true
 DeepSeek R1:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/deepseek-v3-r1-671-billion.webp"
   date: '2025-01-20'
@@ -270,6 +329,11 @@ GLM-5.2:
   layer_mix: 78 MLA/DSA
   kv_cache_per_token_bf16: '87.8 KiB'
   highlight: Reuses each full DSA indexer result across the next three layers, making 1M-token sparse attention cheaper.
+  related_concepts:
+    - mla
+    - deepseek_sparse_attention
+    - index_share
+    - moe
   aa_intelligence_index: '50.7'
   aai_profile: 'General 60.4 · Scientific 47.7 · Coding 67.0 · Agents 43.1'
   aa_url: https://artificialanalysis.ai/models/glm-5-2
@@ -719,7 +783,12 @@ Kimi Linear 48B-A3B:
   attention: 3:1 Kimi Delta Attention and MLA
   layer_mix: '7 MLA + 20 Kimi Delta Attention'
   kv_cache_per_token_bf16: '7.9 KiB'
-  highlight: Uses NoPE in MLA layers and channel-wise gating for long-context efficiency.
+  highlight: Uses NoPE in MLA layers, channel-wise KDA gating, and kernel-4 ShortConv preprocessing for Q, K, and V in KDA layers.
+  related_concepts:
+    - nope
+    - mla
+    - gated_deltanet
+    - shortconv
   aa_intelligence_index: '8.5'
   aai_profile: 'General N/A · Scientific N/A · Coding 14.2 · Agents N/A'
   aa_url: https://artificialanalysis.ai/models/kimi-linear-48b-a3b-instruct
@@ -757,6 +826,66 @@ Laguna XS.2:
     url: https://huggingface.co/poolside/Laguna-XS.2/blob/main/config.json
   tech_report:
     url: https://poolside.ai/assets/laguna/laguna-m1-xs2-technical-report.pdf
+Laguna XS 2.1:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/laguna-xs-2-1.webp"
+  date: '2026-07-02'
+  summary: Poolside's 33B Laguna refresh extends the sparse MoE architecture to 262k context while keeping about 3B parameters active per token.
+  scale: 33B total, 3B active (9.1% active)
+  context_tokens: '262,144'
+  vocab_size: '100,352 (~100k)'
+  license_name: OpenMDW License 1.1
+  license_url: https://huggingface.co/poolside/Laguna-XS-2.1/blob/main/LICENSE.md
+  decoder_type: Sparse MoE
+  attention: Gated GQA with QK-Norm and 3:1 sliding-window/global attention
+  layer_mix: '30 sliding-window + 10 global GQA'
+  kv_cache_per_token_bf16: '160 KiB'
+  highlight: Uses 256 routed experts with top-8 routing plus one shared expert, a dense first layer, and per-layer query-head counts.
+  related_concepts:
+    - gqa
+    - qk_norm
+    - swa
+    - moe
+    - attention_budgeting
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: poolside/Laguna-XS-2.1
+    label: config.json
+    url: https://huggingface.co/poolside/Laguna-XS-2.1/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://huggingface.co/poolside/Laguna-XS-2.1
+Laguna S 2.1:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/laguna-s-2-1.webp"
+  date: '2026-07-21'
+  summary: Poolside's 118B sparse MoE scales the Laguna XS recipe to 48 layers and 1M context while activating about 8B parameters per token.
+  scale: 118B total, 8B active (6.8% active)
+  context_tokens: '1,048,576'
+  vocab_size: '100,352 (~100k)'
+  license_name: OpenMDW License 1.1
+  license_url: https://huggingface.co/poolside/Laguna-S-2.1/blob/main/LICENSE.md
+  decoder_type: Sparse MoE
+  attention: Gated GQA with QK-Norm and 3:1 sliding-window/global attention
+  layer_mix: '36 sliding-window + 12 global GQA'
+  kv_cache_per_token_bf16: '192 KiB'
+  highlight: Uses 256 routed experts with top-10 routing plus one shared expert, a dense first layer, and per-layer query-head counts.
+  related_concepts:
+    - gqa
+    - qk_norm
+    - swa
+    - moe
+    - attention_budgeting
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: poolside/Laguna-S-2.1
+    label: config.json
+    url: https://huggingface.co/poolside/Laguna-S-2.1/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://poolside.ai/blog/introducing-laguna-s-2-1
 LFM2.5 350M:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/lfm2-5-350m.webp"
   date: '2026-05-28'
@@ -1201,6 +1330,67 @@ Nanbeige 4.1 3B:
     url: https://huggingface.co/Nanbeige/Nanbeige4.1-3B/blob/main/config.json
   tech_report:
     url: https://arxiv.org/pdf/2602.13367
+Nanbeige 4.2 3B:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/nanbeige-4-2-3b.webp"
+  date: '2026-07-21'
+  summary: Compact agentic model that runs the same 22-layer dense transformer stack twice, resulting in 44 transformer blocks (layers) without duplicating the layer weights.
+  scale: 4B total, 3B non-embedding
+  context_tokens: '262,144'
+  vocab_size: '166,144 (~166k)'
+  license_name: Apache License 2.0
+  license_url: https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/README.md
+  decoder_type: Dense
+  attention: GQA with RoPE
+  layer_mix: '22 shared GQA layers × 2 passes'
+  kv_cache_per_token_bf16: '176 KiB'
+  highlight: Reuses the same 22-layer stack for a second pass, giving 44 block applications with 3B non-embedding parameters.
+  related_concepts:
+    - looped_depth_sharing
+    - gqa
+    - rmsnorm
+    - rope
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: Nanbeige/Nanbeige4.2-3B
+    label: config.json
+    url: https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/Nanbeige42_report.pdf
+Motif 3 Beta:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/motif-3-beta.webp"
+  date: '2026-07-21'
+  summary: Large sparse MoE that combines Grouped Differential Latent Attention, per-expert PolyNorm, and modified mHC in a 53-layer decoder.
+  scale: 314B total, 13B active (4.1% active)
+  context_tokens: '262,144'
+  vocab_size: '220,160 (~220k)'
+  license_name: Motif Technologies Non-Commercial License
+  license_url: https://huggingface.co/Motif-Technologies/Motif-3-Beta/blob/main/README.md#license
+  decoder_type: Sparse MoE
+  attention: GDLA with MLA-style latent projections, RoPE, and 3:1 sliding-window/full attention
+  layer_mix: '39 sliding-window + 14 full GDLA'
+  kv_cache_per_token_bf16: '530 KiB'
+  highlight: Routes each token through 8 of 384 experts plus one shared expert, with per-expert PolyNorm and a 3:1 sliding-window/full GDLA pattern.
+  related_concepts:
+    - mla
+    - swa
+    - mhc
+    - moe
+    - polynorm
+    - rmsnorm
+    - rope
+    - mtp
+  aa_intelligence_index: '44'
+  aai_profile: 'N/A'
+  aa_url: https://artificialanalysis.ai/models/motif-0714
+  config:
+    repo: Motif-Technologies/Motif-3-Beta
+    label: config.json
+    url: https://huggingface.co/Motif-Technologies/Motif-3-Beta/blob/main/config.json
+  hide_article_link: true
 Nemotron 3 Nano 30B-A3B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/nemotron-3-nano-30b-a3b.webp"
   date: '2025-12-04'
@@ -1699,6 +1889,39 @@ SmolLM3 3B:
     url: https://huggingface.co/HuggingFaceTB/SmolLM3-3B-Base/blob/main/config.json
   tech_report:
     url: https://huggingface.co/blog/smollm3
+Solar Open 2:
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/solar-open-2.webp"
+  date: '2026-07-22'
+  summary: Upstage's sparse hybrid alternates one gated GQA layer with three Kimi Delta Attention layers and reaches a 1M-token context without positional embeddings.
+  scale: 250B total, 15B active (6% active)
+  context_tokens: '1,048,576'
+  vocab_size: '196,608 (~197k)'
+  license_name: Upstage Solar License
+  license_url: https://huggingface.co/upstage/Solar-Open2-250B/blob/main/LICENSE
+  decoder_type: Sparse hybrid
+  attention: 3:1 Kimi Delta Attention and gated GQA with NoPE
+  layer_mix: '12 gated GQA + 36 Kimi Delta Attention'
+  kv_cache_per_token_bf16: '48 KiB'
+  highlight: Uses a repeating gated-GQA/KDA hybrid stack, kernel-4 ShortConv in KDA, and top-8 routing over 320 experts plus one shared expert.
+  related_concepts:
+    - gqa
+    - gated_attention
+    - gated_deltanet
+    - shortconv
+    - nope
+    - moe
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: upstage/Solar-Open2-250B
+    label: config.json
+    url: https://huggingface.co/upstage/Solar-Open2-250B/blob/main/config.json
+  hide_article_link: true
+  tech_report:
+    url: https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf
 Soofi S 30B-A3B:
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/soofi.webp"
   date: '2026-07-10'
@@ -1999,6 +2222,7 @@ Inkling:
     - qk_norm
     - gqa
     - swa
+    - shortconv
     - moe
     - mtp
   aa_intelligence_index: 'N/A'
