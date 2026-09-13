@@ -221,6 +221,44 @@ DeepSeek V4-Flash:
     url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/config.json
   tech_report:
     url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/DeepSeek_V4.pdf
+DeepSeek V4.1-Flash:
+  company: DeepSeek
+  image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/deepseek-v4-1-flash.webp"
+  date: '2026-09-10'
+  summary: Causal encoder-decoder MoE with CSA2 cache sharing, Engram memory, and a million-token context. The figure shows the text backbone.
+  scale: 552B backbone + 196B Engram; 8B active prefill, 16B active decode (2.9% of backbone)
+  memory_calculator:
+    parameter_count: 748000000000
+    weight_note: "Counts the 552B backbone and 196B Engram tables, assumed resident in memory. Excludes the vision encoder and DSpark draft modules."
+    cache_supported: false
+    cache_note: "CSA2 shares global KV and indexer keys across layers while keeping per-layer sliding-window state. The per-token value describes growing global caches only; a total-cache estimate is not shown."
+  context_tokens: '1,048,576'
+  vocab_size: '129,280'
+  license_name: MIT License
+  license_url: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/LICENSE
+  decoder_type: Sparse MoE (causal encoder-decoder)
+  attention: MLA-style CSA2 + SWA with cross-layer KV and sparse-index reuse
+  layer_mix: 20 encoder + 20 decoder layers; 2 SWA-only + 38 CSA2/SWA
+  kv_cache_per_token_bf16: '3.125 KiB'
+  highlight: Decoder global KV comes from final encoder states. Single-Pass mHC mixes four residual streams around each attention and MoE sublayer.
+  related_concepts:
+    - mhc
+    - kv_sharing
+    - swa
+    - moe
+    - rope
+    - rmsnorm
+    - silu
+  aa_intelligence_index: 'N/A'
+  aai_profile: 'N/A'
+  aa_url:
+  config:
+    repo: deepseek-ai/DeepSeek-V4.1-Flash
+    label: config.json
+    url: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/config.json
+  tech_report:
+    url: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/DeepSeek_V41_Tech_Report.pdf
+  hide_article_link: true
 GLM-4.5 355B:
   company: Z.ai
   image: "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/glm-4-5-355b.webp"
